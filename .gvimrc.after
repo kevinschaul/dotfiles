@@ -1,0 +1,5 @@
+color desert
+
+imap jj <esc>
+imap jw <esc>:w
+
