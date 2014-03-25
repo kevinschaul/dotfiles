@@ -3,3 +3,5 @@
 	name = Kevin Schaul
 [alias]
 	st = status
+[core]
+	excludesfile = /home/kevin/.gitignore
