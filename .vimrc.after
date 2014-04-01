@@ -3,3 +3,5 @@ color desert
 imap jj <esc>
 imap jw <esc>:w
 
+set colorcolumn=80
+
