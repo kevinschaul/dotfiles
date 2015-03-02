@@ -1,7 +1,1 @@
-color desert
-
-imap jj <esc>
-imap jw <esc>:w
-
-set colorcolumn=80
-
+set guifont=Menlo\ Regular:h18
