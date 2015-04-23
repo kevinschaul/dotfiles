@@ -13,6 +13,7 @@ imap jw <esc>:w
 set colorcolumn=80
 
 set wildignore+=*/node_modules/*
+set wildignore+=*/bower_components/*
 
 " Opens file in new tab when using CtrlP.
 let g:ctrlp_prompt_mappings = {
@@ -20,5 +21,5 @@ let g:ctrlp_prompt_mappings = {
       \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
       \ }
 
-
-au BufNewFile,BufRead *.twig set filetype=html
+" Disable quote concealing for json files
+let g:vim_json_syntax_conceal = 0
