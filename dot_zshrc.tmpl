@@ -1,3 +1,5 @@
+# {{ .chezmoi.version.builtBy }}
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -113,7 +115,6 @@ export PATH=$HOME/.local/bin:$PATH
     alias create-custom-template='npx @washingtonpost/create-custom-template'
     export NEXT_TELEMETRY_DISABLED=1
 
-    # {{ .chezmoi.version.builtBy }}
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
     # NVM
@@ -134,8 +135,8 @@ export PATH=$HOME/.local/bin:$PATH
     export NODE_EXTRA_CA_CERTS=${CERT_PATH}
 {{ end }}
 
-{{ if eq .chezmoi.os "linux-gnu" }}
-# Linux only
+{{ if eq .chezmoi.os "linux" }}
+    # Linux only
 {{ end }}
 
 # pyenv
@@ -146,6 +147,8 @@ eval "$(pyenv init -)"
 # pyenv-virtualenv
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
+# Set up fzf (file searcher, used in vim)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Enable a helpful filename managment program
 autoload zmv
