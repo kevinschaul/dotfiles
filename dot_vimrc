@@ -1,0 +1,143 @@
+call plug#begin()
+  Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
+  Plug 'editorconfig/editorconfig-vim'
+  Plug 'bronson/vim-trailing-whitespace'
+  Plug 'preservim/nerdtree'
+  Plug 'sheerun/vim-polyglot'
+  Plug 'dense-analysis/ale'
+  Plug 'ervandew/supertab'
+  " Note: To full install this, you need to cd into .vim/plugged/YouCompleteMe and run `python install.py --all`
+  Plug 'ycm-core/YouCompleteMe'
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
+call plug#end()
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+let g:ycm_auto_hover = ''
+
+let mapleader = ","
+
+filetype plugin on
+
+color desert
+
+set tabstop=8
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set autoindent
+
+set foldmethod=indent
+set foldlevel=10
+set modelines=0
+set encoding=utf-8
+set scrolloff=8
+set showmode
+set number
+set hidden
+set wildmenu
+set wildmode=list:longest
+set visualbell
+set ttyfast
+set ruler
+set backspace=indent,eol,start
+set laststatus=2
+set statusline=%<%f%h%m%r%=%b\ 0x%B\ \ %l,%c%V\ %P
+set colorcolumn=80
+set wildignore+=*/node_modules/*
+set autoread
+set noswapfile
+
+set textwidth=79
+set formatoptions=qrn1
+
+" Set up/down movement to move one visual line when wrapped
+nnoremap j gj
+nnoremap k gk
+
+set ignorecase
+set smartcase
+set incsearch
+set showmatch
+set hlsearch
+nnoremap <leader><space> :noh<cr>
+
+inoremap jj <esc>
+inoremap jw <esc>:w
+
+" Use ; as : for less shift pressing
+nnoremap ; :
+
+" Reformat text wrapping for current paragraph
+nnoremap <leader>q gqip
+
+" Move to splits with fewer keys
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Set up FZF fuzzy file finder
+" To install on os x: brew install the_silver_searcher
+" Use ,t to activate FZF fuzzy file finder (ignoring files in .gitignore)
+" Use ,T to activate FZF fuzzy file finder on all files
+command! FZFUseful call fzf#run(fzf#wrap({'source': 'ag -l --path-to-ignore ~/.ignore --nocolor --hidden -g ""'}))
+command! FZFAll call fzf#run(fzf#wrap({'source': 'ag -l --nocolor -u -g ""'}))
+nnoremap <leader>t :FZFUseful<enter>
+nnoremap <leader>T :FZFAll<enter>
+
+" Use ,f to search files for a given string
+" To install on os x: brew install the_silver_searcher
+" Fix to search only file contents (not file names): https://github.com/junegunn/fzf.vim/issues/346
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+nnoremap <leader>f :Ag<CR>
+
+if has("gui_macvim")
+  set guifont=Menlo\ Regular:h18
+
+  " Set up control tab shortcuts for switching between tabs
+  " https://superuser.com/questions/382060/shortcut-to-switch-tabs-in-macvim
+  " Switch to specific tab numbers with Command-number
+  noremap <D-1> :tabn 1<CR>
+  noremap <D-2> :tabn 2<CR>
+  noremap <D-3> :tabn 3<CR>
+  noremap <D-4> :tabn 4<CR>
+  noremap <D-5> :tabn 5<CR>
+  noremap <D-6> :tabn 6<CR>
+  noremap <D-7> :tabn 7<CR>
+  noremap <D-8> :tabn 8<CR>
+  noremap <D-9> :tabn 9<CR>
+  " Command-0 goes to the last tab
+  noremap <D-0> :tablast<CR>
+else
+  set mouse=a
+  set clipboard=unnamed
+endif
+
+" Always change current directory when changing in NERDTree
+let g:NERDTreeChDirMode=2
+
+" Toggle NERDTree on ,n
+nnoremap <Leader>n :NERDTreeToggle<Enter>
+
+" Pretty format JSON files
+command Json %!python -m json.tool
+
+" Set tabstop to 2 spaces
+command Tab2 set shiftwidth=2 | set softtabstop=2 | set expandtab
+
+" Set tabstop to 4 spaces
+command Tab4 set shiftwidth=4 | set softtabstop=4 | set expandtab
+
+" Set tabstop to use literal tab characters
+command TabTab set shiftwidth=4 | set softtabstop=0 | set noexpandtab | set tabstop=4
+
