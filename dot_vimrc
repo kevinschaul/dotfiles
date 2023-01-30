@@ -118,6 +118,10 @@ if has("gui_macvim")
   noremap <D-9> :tabn 9<CR>
   " Command-0 goes to the last tab
   noremap <D-0> :tablast<CR>
+elseif has("gui_gtk")
+  set guifont=Monospace\ 12
+  " Hide toolbar
+  set guioptions-=T
 else
   set mouse=a
   set clipboard=unnamed
