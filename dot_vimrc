@@ -122,6 +122,8 @@ elseif has("gui_gtk")
   set guifont=Monospace\ 12
   " Hide toolbar
   set guioptions-=T
+  " Default to system clipboard
+  set clipboard^=unnamedplus
 else
   set mouse=a
   set clipboard=unnamed
