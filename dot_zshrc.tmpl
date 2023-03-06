@@ -1,3 +1,5 @@
+# {{ .chezmoi.version.builtBy }}
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -113,7 +115,6 @@ export PATH=$HOME/.local/bin:$PATH
     alias create-custom-template='npx @washingtonpost/create-custom-template@latest'
     export NEXT_TELEMETRY_DISABLED=1
 
-    # {{ .chezmoi.version.builtBy }}
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
     # NVM
@@ -134,8 +135,45 @@ export PATH=$HOME/.local/bin:$PATH
     export NODE_EXTRA_CA_CERTS=${CERT_PATH}
 {{ end }}
 
-{{ if eq .chezmoi.os "linux-gnu" }}
-# Linux only
+{{ if eq .chezmoi.os "linux" }}
+    # Linux only
+    # kdesrc-build #################################################################
+
+    ## Add kdesrc-build to PATH
+    export PATH="$HOME/kde/src/kdesrc-build:$PATH"
+
+
+    ## Autocomplete for kdesrc-run
+    function _comp_kdesrc_run
+    {
+      local cur
+      COMPREPLY=()
+      cur="${COMP_WORDS[COMP_CWORD]}"
+
+      # Complete only the first argument
+      if [[ $COMP_CWORD != 1 ]]; then
+        return 0
+      fi
+
+      # Retrieve build modules through kdesrc-run
+      # If the exit status indicates failure, set the wordlist empty to avoid
+      # unrelated messages.
+      local modules
+      if ! modules=$(kdesrc-run --list-installed);
+      then
+          modules=""
+      fi
+
+      # Return completions that match the current word
+      COMPREPLY=( $(compgen -W "${modules}" -- "$cur") )
+
+      return 0
+    }
+
+    ## Register autocomplete function
+    complete -o nospace -F _comp_kdesrc_run kdesrc-run
+
+    ################################################################################
 {{ end }}
 
 # pyenv
@@ -146,6 +184,8 @@ eval "$(pyenv init -)"
 # pyenv-virtualenv
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
+# Set up fzf (file searcher, used in vim)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Enable a helpful filename managment program
 autoload zmv
