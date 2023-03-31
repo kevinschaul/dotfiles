@@ -173,6 +173,11 @@ export PATH=$HOME/.local/bin:$PATH
     ## Register autocomplete function
     complete -o nospace -F _comp_kdesrc_run kdesrc-run
 
+
+    # Fly.io
+    export FLYCTL_INSTALL="/home/kevin/.fly"
+    export PATH="$FLYCTL_INSTALL/bin:$PATH"
+
     ################################################################################
 {{ end }}
 
