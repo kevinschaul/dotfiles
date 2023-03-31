@@ -1,3 +1,9 @@
+" TODO
+" - Tab completion for identifiers
+" - In JavaScript: cl -> console.log()
+
+let g:ale_completion_enabled = 1
+
 call plug#begin()
   Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'
   Plug 'editorconfig/editorconfig-vim'
@@ -5,11 +11,11 @@ call plug#begin()
   Plug 'preservim/nerdtree'
   Plug 'sheerun/vim-polyglot'
   Plug 'dense-analysis/ale'
-  Plug 'ervandew/supertab'
+  " Plug 'ervandew/supertab'
   " Note: To full install this, you need to cd into .vim/plugged/YouCompleteMe and run `python install.py --all`
-  Plug 'ycm-core/YouCompleteMe'
-  Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
+  " Plug 'ycm-core/YouCompleteMe'
+  " Plug 'SirVer/ultisnips'
+  " Plug 'honza/vim-snippets'
   " post install (yarn install | npm install) then load plugin only for editing supported files
 Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
@@ -17,16 +23,19 @@ Plug 'prettier/vim-prettier', {
 call plug#end()
 
 " make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
+" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+" let g:UltiSnipsExpandTrigger = "<tab>"
+" let g:UltiSnipsJumpForwardTrigger = "<tab>"
+" let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-let g:ycm_auto_hover = ''
+" let g:ycm_auto_hover = ''
+
+let g:ale_virtualtext_cursor = 'disabled'
+let g:ale_sign_column_always = 1
 
 let mapleader = ","
 
@@ -35,8 +44,8 @@ filetype plugin on
 color desert
 
 set tabstop=8
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 set autoindent
 
