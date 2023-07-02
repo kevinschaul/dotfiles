@@ -113,12 +113,14 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+export NEXT_TELEMETRY_DISABLED=1
+export STORYBOOK_DISABLE_TELEMETRY=1
+
 {{ if eq .chezmoi.os "darwin" }}
     # OS X only
     alias o="open ."
     alias r=R
     alias create-custom-template='npx @washingtonpost/create-custom-template@latest'
-    export NEXT_TELEMETRY_DISABLED=1
 
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
