@@ -173,6 +173,8 @@ export NVM_DIR="$HOME/.nvm"
     ## Register autocomplete function
     complete -o nospace -F _comp_kdesrc_run kdesrc-run
 
+    ## Add cuda toolkit to PATH
+    export PATH="/usr/local/cuda-11.8/bin/:$PATH"
 
     # Fly.io
     export FLYCTL_INSTALL="/home/kevin/.fly"
