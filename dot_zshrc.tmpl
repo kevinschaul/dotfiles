@@ -172,6 +172,7 @@ export STORYBOOK_DISABLE_TELEMETRY=1
 
     ## Add cuda toolkit to PATH
     export PATH="/usr/local/cuda-11.8/bin/:$PATH"
+    export LD_LIBRARY_PATH=/usr/local/cuda-11.8/lib64 ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
     # Fly.io
     export FLYCTL_INSTALL="/home/kevin/.fly"
@@ -199,3 +200,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# Secrets
+export LICHESS_BOT_TOKEN="{{ (onepasswordDetailsFields "lichess bot token").password.value }}"
