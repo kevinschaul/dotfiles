@@ -106,6 +106,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export EDITOR="nvim"
 export PATH=$HOME/.local/bin:$PATH
 
 export NEXT_TELEMETRY_DISABLED=1
@@ -201,3 +202,8 @@ export NVM_DIR="$HOME/.nvm"
 
 # Secrets
 export LICHESS_BOT_TOKEN="{{ (onepasswordDetailsFields "lichess bot token").password.value }}"
+
+export RESTIC_PASSWORD="{{ (onepasswordDetailsFields (printf "restic %s" .chezmoi.hostname)).password.value }}"
+export BACKBLAZE_KEY_ID="{{ (onepasswordItemFields (printf "backblaze key %s" .chezmoi.hostname)).keyID.value }}"
+export BACKBLAZE_KEY_SECRET="{{ (onepasswordItemFields (printf "backblaze key %s" .chezmoi.hostname)).keySecret.value }}"
+

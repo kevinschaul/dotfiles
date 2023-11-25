@@ -9,3 +9,8 @@ Rplot*
 ~$*
 
 *.pdf
+
+# Ignore auto-generated pyright config files
+# These are generated using:
+# https://github.com/alefpereira/pyenv-pyright
+pyrightconfig.json
