@@ -178,6 +178,13 @@ export STORYBOOK_DISABLE_TELEMETRY=1
     export FLYCTL_INSTALL="/home/kevin/.fly"
     export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
+    # Secrets
+    export LICHESS_BOT_TOKEN="{{ (onepasswordDetailsFields "lichess bot token").password.value }}"
+
+    export RESTIC_PASSWORD="{{ (onepasswordDetailsFields (printf "restic %s" .chezmoi.hostname)).password.value }}"
+    export BACKBLAZE_KEY_ID="{{ (onepasswordItemFields (printf "backblaze key %s" .chezmoi.hostname)).keyID.value }}"
+    export BACKBLAZE_KEY_SECRET="{{ (onepasswordItemFields (printf "backblaze key %s" .chezmoi.hostname)).keySecret.value }}"
+
     ################################################################################
 {{ end }}
 
@@ -199,11 +206,4 @@ autoload zmv
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Secrets
-export LICHESS_BOT_TOKEN="{{ (onepasswordDetailsFields "lichess bot token").password.value }}"
-
-export RESTIC_PASSWORD="{{ (onepasswordDetailsFields (printf "restic %s" .chezmoi.hostname)).password.value }}"
-export BACKBLAZE_KEY_ID="{{ (onepasswordItemFields (printf "backblaze key %s" .chezmoi.hostname)).keyID.value }}"
-export BACKBLAZE_KEY_SECRET="{{ (onepasswordItemFields (printf "backblaze key %s" .chezmoi.hostname)).keySecret.value }}"
 
