@@ -1,0 +1,26 @@
+[user]
+	name = Kevin Schaul
+	email = kevin.schaul@gmail.com
+[alias]
+	st = status
+	co = checkout
+	ca = commit -a
+	cam = commit -am
+	d = diff
+	dv = difftool -t vimdiff -y
+[core]
+	excludesfile = ~/.gitignore
+	editor = vim
+[push]
+	default = upstream
+	autoSetupRemote = true
+[init]
+	defaultBranch = main
+[pull]
+	rebase = false
+[merge]
+	conflictStyle = zdiff3
+[commit]
+	verbose = true
+[diff]
+	algorithm = histogram
