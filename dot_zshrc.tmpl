@@ -117,7 +117,7 @@ export STORYBOOK_DISABLE_TELEMETRY=1
     alias o="open ."
     alias r=R
     alias create-custom-template='npx @washingtonpost/create-custom-template@latest'
-    alias clokta-main="clokta --profile main -i arn:aws:iam::766513428554:saml-provider/Okta -r arn:aws:iam::766513428554:role/AWS-WPIT_GraphicsDesign"
+    alias clokta-main="clokta --profile main -i arn:aws:iam::766513428554:saml-provider/Okta -r arn:aws:iam::766513428554:role/AWS-WPIT_DevAdmin"
 
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -189,6 +189,8 @@ export STORYBOOK_DISABLE_TELEMETRY=1
     ################################################################################
 {{ end }}
 
+export GEMINI_API_KEY="{{ (onepasswordDetailsFields "Gemini API key").credential.value }}"
+
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
@@ -207,4 +209,7 @@ autoload zmv
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# atuin
+eval "$(atuin init zsh)"
 
