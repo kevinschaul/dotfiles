@@ -117,6 +117,7 @@ export STORYBOOK_DISABLE_TELEMETRY=1
     alias o="open ."
     alias r=R
     alias create-custom-template='npx @washingtonpost/create-custom-template@latest'
+    alias clokta-main="clokta --profile main -i arn:aws:iam::766513428554:saml-provider/Okta -r arn:aws:iam::766513428554:role/AWS-WPIT_DevAdmin"
 
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -178,8 +179,17 @@ export STORYBOOK_DISABLE_TELEMETRY=1
     export FLYCTL_INSTALL="/home/kevin/.fly"
     export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
+    # Secrets
+    export LICHESS_BOT_TOKEN="{{ (onepasswordDetailsFields "lichess bot token").password.value }}"
+
+    export RESTIC_PASSWORD="{{ (onepasswordDetailsFields (printf "restic %s" .chezmoi.hostname)).password.value }}"
+    export BACKBLAZE_KEY_ID="{{ (onepasswordItemFields (printf "backblaze key %s" .chezmoi.hostname)).keyID.value }}"
+    export BACKBLAZE_KEY_SECRET="{{ (onepasswordItemFields (printf "backblaze key %s" .chezmoi.hostname)).keySecret.value }}"
+
     ################################################################################
 {{ end }}
+
+export GEMINI_API_KEY="{{ (onepasswordDetailsFields "Gemini API key").credential.value }}"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -200,8 +210,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Secrets
-export LICHESS_BOT_TOKEN="{{ (onepasswordDetailsFields "lichess bot token").password.value }}"
-export RESTIC_PASSWORD="{{ (onepasswordDetailsFields (printf "restic %s" .chezmoi.hostname)).password.value }}"
-export NEWSBLUR_USERNAME="{{ (onepasswordDetailsFields "NewsBlur").username.value }}"
-export NEWSBLUR_PASSWORD="{{ (onepasswordDetailsFields "NewsBlur").password.value }}"
+# atuin
+eval "$(atuin init zsh --disable-up-arrow)"
+
