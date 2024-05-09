@@ -190,10 +190,6 @@ export STORYBOOK_DISABLE_TELEMETRY=1
     # Secrets
     export LICHESS_BOT_TOKEN="{{ (onepasswordDetailsFields "lichess bot token").password.value }}"
 
-    export RESTIC_PASSWORD="{{ (onepasswordDetailsFields (printf "restic %s" .chezmoi.hostname)).password.value }}"
-    export BACKBLAZE_KEY_ID="{{ (onepasswordItemFields (printf "backblaze key %s" .chezmoi.hostname)).keyID.value }}"
-    export BACKBLAZE_KEY_SECRET="{{ (onepasswordItemFields (printf "backblaze key %s" .chezmoi.hostname)).keySecret.value }}"
-
     ################################################################################
 {{ end }}
 
