@@ -1,5 +1,13 @@
 # {{ .chezmoi.version.builtBy }}
 
+# https://superuser.com/questions/544990/does-tmux-sort-the-path-variable
+{{ if eq .chezmoi.os "darwin" }}
+    if [ -n "$TMUX" ] && [ -f /etc/profile ]; then
+        PATH=""
+        source /etc/profile
+    fi
+{{ end }}
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
