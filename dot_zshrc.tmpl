@@ -198,6 +198,7 @@ export STORYBOOK_DISABLE_TELEMETRY=1
 {{ end }}
 
 export GEMINI_API_KEY="{{ (onepasswordDetailsFields "Gemini API key").credential.value }}"
+export ANTHROPIC_API_KEY="{{ (onepasswordDetailsFields "Anthropic (aider)").credential.value }}"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
