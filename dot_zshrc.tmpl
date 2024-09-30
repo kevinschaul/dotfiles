@@ -86,6 +86,11 @@ plugins=(
     git-open # git clone https://github.com/paulirish/git-open.git $ZSH_CUSTOM/plugins/git-open
 )
 
+{{ if eq .chezmoi.os "darwin" }}
+    # Add zsh completions from homebrew
+    fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
+{{ end }}
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -131,6 +136,16 @@ export STORYBOOK_DISABLE_TELEMETRY=1
 
     # Add Visual Studio Code (code)
     export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+    # Add QGIS tools
+    export PATH="$PATH:/Applications/QGIS-LTR.app/Contents/MacOS/bin/"
+
+    # bun completions
+    [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+    
+    # bun
+    export BUN_INSTALL="$HOME/.bun"
+    export PATH="$BUN_INSTALL/bin:$PATH"
 
     # Fixes for Zscaler certificates
     # https://help.zscaler.com/zia/adding-custom-certificate-application-specific-trust-store
