@@ -29,6 +29,6 @@
 
 {{ if eq .chezmoi.os "linux" }}
 [credential]
-	helper = /usr/local/bin/git-credential-manager
+	## helper = /usr/local/bin/git-credential-manager
 	credentialStore = secretservice
 {{ end }}
