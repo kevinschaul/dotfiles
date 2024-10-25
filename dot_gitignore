@@ -14,3 +14,7 @@ Rplot*
 # These are generated using:
 # https://github.com/alefpereira/pyenv-pyright
 pyrightconfig.json
+
+# Python
+__pycache__
+.python-version
