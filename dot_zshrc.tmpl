@@ -209,10 +209,15 @@ export STORYBOOK_DISABLE_TELEMETRY=1
     # Secrets
     export LICHESS_BOT_TOKEN="{{ (onepasswordDetailsFields "lichess bot token").password.value }}"
 
+    # fd is renamed to findfd on debian for some reason
+    alias fd="fdfind"
+
     ################################################################################
 {{ end }}
 
 export GEMINI_API_KEY="{{ (onepasswordDetailsFields "Gemini API key").credential.value }}"
+export ANTHROPIC_API_KEY_AIDER="{{ (onepasswordDetailsFields "Anthropic (aider)").credential.value }}"
+export OMNIVORE_APIKEY="{{ (onepasswordDetailsFields "Omnivore (Omnivook)").credential.value }}"
 export ANTHROPIC_API_KEY="{{ (onepasswordDetailsFields "Anthropic (aider)").credential.value }}"
 
 # pyenv

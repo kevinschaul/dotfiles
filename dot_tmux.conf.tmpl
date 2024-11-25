@@ -1,0 +1,59 @@
+set -g default-terminal "screen-256color"
+
+# Rebind tmux prefix to ctrl-a
+set -g prefix C-a
+unbind C-b
+bind-key C-a send-prefix
+
+# Rebind vertical split to |
+unbind %
+bind | split-window -h
+
+# Rebind horizontal split to -
+unbind '"'
+bind - split-window -v
+
+# Remind r to refresh tmux configuration
+unbind r
+bind r source-file ~/.tmux.conf
+
+# Resize panes
+bind -r j resize-pane -D 5
+bind -r k resize-pane -U 5
+bind -r l resize-pane -R 5
+bind -r h resize-pane -L 5
+
+# Maximize
+bind -r m resize-pane -Z
+
+set -g mouse on
+
+# Use vim keybindings
+set-window-option -g mode-keys vi
+
+# Remove the delay after pressing escape
+set -s escape-time 0
+
+set -g status-right "#{pane_title}"
+
+# Bind C-a c to change working directory to current path
+bind c attach-session -t . -c "#{pane_current_path}"
+
+# tmp plugin
+set -g @plugin 'tmux-plugins/tpm'
+
+# list of tmux lpugins
+set -g @plugin 'christoomey/vim-tmux-navigator'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @plugin 'tmux-plugins/tmux-yank'
+{{ if eq .chezmoi.os "linux" }}
+set -g @override_copy_command 'xsel -b'
+{{ end }}
+
+set -g @resurrect-capture-pane-contents 'on'
+set -g @continuum-restore 'on'
+
+# Initialize tmux plugin manager
+run '~/.tmux/plugins/tpm/tpm'
+
