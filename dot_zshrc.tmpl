@@ -215,11 +215,13 @@ export STORYBOOK_DISABLE_TELEMETRY=1
     ################################################################################
 {{ end }}
 
+export CONGRESS_API_KEY="{{ (onepasswordDetailsFields "Congress.gov API key").credential.value }}"
 export GEMINI_API_KEY="{{ (onepasswordDetailsFields "Gemini API key").credential.value }}"
 export LLM_GEMINI_KEY="{{ (onepasswordDetailsFields "Gemini API key").credential.value }}"
 export ANTHROPIC_API_KEY_AIDER="{{ (onepasswordDetailsFields "Anthropic (aider)").credential.value }}"
 export OMNIVORE_APIKEY="{{ (onepasswordDetailsFields "Omnivore (Omnivook)").credential.value }}"
 export ANTHROPIC_API_KEY="{{ (onepasswordDetailsFields "Anthropic (aider)").credential.value }}"
+export DATAWRAPPER_API_KEY="{{ (onepasswordDetailsFields "Datawrapper API key").credential.value }}"
 
 export OLLAMA_API_BASE=http://127.0.0.1:11434
 {{ if eq .chezmoi.os "linux" }}
@@ -245,6 +247,17 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# atuin
-eval "$(atuin init zsh --disable-up-arrow)"
+# uv
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
 
+# Add autocomplete for uv run [filename]
+# https://github.com/astral-sh/uv/issues/8432
+_uv_run_mod() {
+    if [[ "$words[2]" == "run" && "$words[CURRENT]" != -* ]]; then
+        _arguments '*:filename:_files'
+    else
+        _uv "$@"
+    fi
+}
+compdef _uv_run_mod uv
