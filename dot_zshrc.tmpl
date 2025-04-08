@@ -196,7 +196,7 @@ export STORYBOOK_DISABLE_TELEMETRY=1
     complete -o nospace -F _comp_kdesrc_run kdesrc-run
 
     ## Add cuda toolkit to PATH
-    export PATH="/usr/local/cuda-11.8/bin/:$PATH"
+    export PATH="$PATH:/usr/local/cuda-11.8/bin/"
 
     # Fly.io
     export FLYCTL_INSTALL="/home/kevin/.fly"
@@ -217,10 +217,16 @@ export STORYBOOK_DISABLE_TELEMETRY=1
 
 export CONGRESS_API_KEY="{{ (onepasswordDetailsFields "Congress.gov API key").credential.value }}"
 export GEMINI_API_KEY="{{ (onepasswordDetailsFields "Gemini API key").credential.value }}"
+export LLM_GEMINI_KEY="{{ (onepasswordDetailsFields "Gemini API key").credential.value }}"
 export ANTHROPIC_API_KEY_AIDER="{{ (onepasswordDetailsFields "Anthropic (aider)").credential.value }}"
 export OMNIVORE_APIKEY="{{ (onepasswordDetailsFields "Omnivore (Omnivook)").credential.value }}"
 export ANTHROPIC_API_KEY="{{ (onepasswordDetailsFields "Anthropic (aider)").credential.value }}"
 export DATAWRAPPER_API_KEY="{{ (onepasswordDetailsFields "Datawrapper API key").credential.value }}"
+
+export OLLAMA_API_BASE=http://127.0.0.1:11434
+{{ if eq .chezmoi.os "linux" }}
+export OLLAMA_MODELS=/data/kevin/ollama
+{{ end }}
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
