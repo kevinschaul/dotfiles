@@ -228,6 +228,9 @@ export OLLAMA_API_BASE=http://127.0.0.1:11434
 {{ if eq .chezmoi.os "linux" }}
 export OLLAMA_MODELS=/data/kevin/ollama
 {{ end }}
+{{ if eq .chezmoi.os "darwin" }}
+export OLLAMA_HOST=box.local:11434
+{{ end }}
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
