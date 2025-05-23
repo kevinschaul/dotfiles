@@ -18,3 +18,5 @@ pyrightconfig.json
 # Python
 __pycache__
 .python-version
+
+.aider*
