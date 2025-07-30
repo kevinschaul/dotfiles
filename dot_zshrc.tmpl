@@ -225,6 +225,7 @@ export OPENAI_API_KEY="{{ (onepasswordDetailsFields "OpenAI API key").credential
 export MISTRAL_API_KEY="{{ (onepasswordDetailsFields "Mistral API key").credential.value }}"
 export POLYGON_IO_API_KEY="{{ (onepasswordDetailsFields "Polygon.io API key").credential.value }}"
 export ALPHA_VANTAGE_API_KEY="{{ (onepasswordDetailsFields "Alpha Vantage API key").credential.value }}"
+export OPENROUTER_KEY="{{ (onepasswordDetailsFields "Open Router API key").credential.value }}"
 
 export OLLAMA_API_BASE=http://127.0.0.1:11434
 {{ if eq .chezmoi.os "linux" }}
