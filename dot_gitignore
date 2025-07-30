@@ -20,3 +20,4 @@ __pycache__
 .python-version
 
 .aider*
+.claude
