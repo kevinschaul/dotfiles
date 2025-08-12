@@ -233,7 +233,9 @@ export OLLAMA_MODELS=/data/kevin/ollama
 {{ end }}
 {{ if eq .chezmoi.os "darwin" }}
 export OLLAMA_HOST=box.local:11434
+export LMSTUDIO_API_BASE=http://box.local:1234
 {{ end }}
+export PATH="$PATH:$HOME/.lmstudio/bin"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -268,6 +270,9 @@ _uv_run_mod() {
     fi
 }
 compdef _uv_run_mod uv
+
+# go
+export PATH="$PATH:$HOME/go/bin"
 
 # cargo
 . "$HOME/.cargo/env"
