@@ -226,6 +226,7 @@ export MISTRAL_API_KEY="{{ (onepasswordDetailsFields "Mistral API key").credenti
 export POLYGON_IO_API_KEY="{{ (onepasswordDetailsFields "Polygon.io API key").credential.value }}"
 export ALPHA_VANTAGE_API_KEY="{{ (onepasswordDetailsFields "Alpha Vantage API key").credential.value }}"
 export OPENROUTER_KEY="{{ (onepasswordDetailsFields "Open Router API key").credential.value }}"
+export ARTIFICIAL_ANALYSIS_API_KEY="{{ (onepasswordDetailsFields "Artificial Analysis API key").credential.value }}"
 
 export OLLAMA_API_BASE=http://127.0.0.1:11434
 {{ if eq .chezmoi.os "linux" }}
@@ -234,6 +235,7 @@ export OLLAMA_MODELS=/data/kevin/ollama
 {{ if eq .chezmoi.os "darwin" }}
 export OLLAMA_HOST=box.local:11434
 export LMSTUDIO_API_BASE=http://box.local:1234
+export GITHUB_COPILOT_API_KEY=$(cat ~/.config/github-copilot/apps.json | jq -r '.[keys[0]].oauth_token')
 {{ end }}
 export PATH="$PATH:$HOME/.lmstudio/bin"
 
